@@ -1,0 +1,18 @@
+#
+# This script is used to kill the process.
+#
+
+if [ $# != 2 ]
+then
+   echo Parameter error!
+   echo Useage example: killer UserName ProcessName
+   exit
+fi
+
+# echo "ps -fu$1|grep $2|grep -v killer|grep -v grep| cut -b 9-17|while read"
+# ps -fu$1|grep $2|grep -v killer|grep -v grep| awk '{print $2}' |while read line
+ps -fu$1|grep $2|grep -v killer|grep -v grep| cut -b 9-17  |while read line
+do
+   kill -9 $line
+   echo  "Process $line was killed!"
+done
